@@ -73,16 +73,17 @@
                 <span class="text-xl font-bold text-gray-800">Online Okytu</span>
             </div>
             
-            <div class="hidden md:flex items-center space-x-8">
+            <div id="mobile-menu" class="hidden flex-col space-y-4 mt-4 md:flex md:flex-row md:space-y-0 md:space-x-8">
                 <a href="#" class="nav-link active-nav text-purple-600 font-medium">Басты бет</a>
                 <a href="#courses" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Курстар</a>
                 <a href="#webinars" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Вебинарлар</a>
                 <a href="#mentors" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Менторлар</a>
                 <a href="#" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Жетістіктер</a>
             </div>
+
             
             <div class="flex items-center space-x-4">
-                <button class="md:hidden text-gray-600">
+                <button id="burger-btn" class="md:hidden text-gray-600">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
                 <div class="relative">
@@ -107,10 +108,10 @@
         <div class="container mx-auto px-6">
             <div class="max-w-2xl">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Бағдарламалауды онлайн үйреніңіз</h1>
-                <p class="text-xl mb-8">CodeMaster платформасында қазіргі заманғы технологияларды үйреніңіз және IT-саласындағы мансабыңызды бастаңыз</p>
+                <p class="text-xl mb-8">Online Okytu платформасында қазіргі заманғы технологияларды үйреніңіз және IT-саласындағы мансабыңызды бастаңыз</p>
                 <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                    <button class="bg-white text-purple-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium shadow-sm">Курстарды қарау</button>
-                    <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-3 rounded-lg font-medium border border-white border-opacity-30">Тегін сабақты бастау</button>
+                    <a href="#courses" class="bg-white text-purple-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium shadow-sm">Курстарды қарау</a>
+                    <a href="#courses" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-3 rounded-lg font-medium border border-white border-opacity-30">Тегін сабақты бастау</a>
                 </div>
             </div>
         </div>
@@ -662,6 +663,14 @@
                     link.style.color = '#4b5563';
                 }
             });
+        });
+
+
+        const burgerBtn = document.getElementById("burger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        burgerBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
         });
     </script>
 </body>
