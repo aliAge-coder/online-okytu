@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python бағдарламалау</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Python бағдарламалау</h1>
+    <p class="text-base sm:text-lg text-gray-600 mb-8">
+      Бұл курс Python тілінің негіздерін үйретуге бағытталған. Жаңадан бастаушылар үшін өте қолайлы.
+    </p>
+
+    <div class="bg-white rounded-xl shadow p-5 sm:p-6 space-y-4">
+        <h2 class="text-xl font-semibold text-purple-700">📚 Курс мазмұны</h2>
+
+        <!-- 1-бөлім: Кіріспе -->
+        <div class="border border-gray-200 rounded-lg">
+            <button onclick="toggleSection('intro')" class="w-full flex justify-between items-center p-4 text-left text-gray-800 font-medium hover:bg-gray-50">
+                <span>1-бөлім: Кіріспе</span>
+                <i class="fas fa-chevron-down" id="icon-intro"></i>
+            </button>
+            <div id="section-intro" class="px-4 pb-4 hidden text-sm text-gray-600">
+                <p class="mb-2"><strong>Мақсаты:</strong> Python деген не екенін, оны қайда қолдануға болатынын түсіндіру.</p>
+                <p class="mb-2">Python — қарапайым синтаксисі бар, ең танымал тілдердің бірі. Оны веб, мәліметтер ғылымы, автоматтандыру, AI, және тағы басқа салаларда қолданады.</p>
+                <p class="mb-2"><strong>Сабақ мазмұны:</strong></p>
+                <ul class="list-disc list-inside">
+                    <li>Python тарихы және пайда болу мақсаты</li>
+                    <li>Python-ның басқа тілдерден айырмашылығы</li>
+                    <li>Python орнату (Windows/Mac/Linux)</li>
+                    <li>Алғашқы код: <code>print("Сәлем, әлем!")</code></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- 2-бөлім: Практикалық сабақтар -->
+        <div class="border border-gray-200 rounded-lg">
+            <button onclick="toggleSection('practice')" class="w-full flex justify-between items-center p-4 text-left text-gray-800 font-medium hover:bg-gray-50">
+                <span>2-бөлім: Практикалық сабақтар</span>
+                <i class="fas fa-chevron-down" id="icon-practice"></i>
+            </button>
+            <div id="section-practice" class="px-4 pb-4 hidden text-sm text-gray-600 space-y-3">
+                <p><strong>Бұл бөлімде сіз Python тілінде өз қолыңызбен код жазуды бастайсыз.</strong></p>
+
+                <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <p class="font-medium text-purple-700 mb-2">Сабақ 1: Айнымалылар мен типтер</p>
+                    <pre class="bg-white text-gray-800 p-3 rounded overflow-x-auto text-sm"><code>
+x = 5
+y = "Сәлем"
+print(x)
+print(y)
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <p class="font-medium text-purple-700 mb-2">Сабақ 2: Шартты операторлар</p>
+                    <pre class="bg-white text-gray-800 p-3 rounded overflow-x-auto text-sm"><code>
+age = 18
+if age >= 18:
+    print("Сіз ересексіз")
+else:
+    print("Сіз кәмелетке толмағансыз")
+                    </code></pre>
+                </div>
+
+                <p class="text-gray-500">Келесі сабақтарда циклдер, функциялар, және модульдермен танысасыз.</p>
+            </div>
+        </div>
+
+
+        <!-- 3-бөлім: Тесттер -->
+        <div class="border border-gray-200 rounded-lg">
+            <button onclick="toggleSection('quiz')" class="w-full flex justify-between items-center p-4 text-left text-gray-800 font-medium hover:bg-gray-50">
+                <span>3-бөлім: Тесттер</span>
+                <i class="fas fa-chevron-down" id="icon-quiz"></i>
+            </button>
+            <div id="section-quiz" class="px-4 pb-4 hidden text-sm text-gray-700 space-y-6">
+    
+                <!-- Сұрақ 1 -->
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <p class="font-semibold mb-3">1. Python-да экранға мәтін шығару үшін қандай функция қолданылады?</p>
+                    <div class="grid gap-3">
+                        <button onclick="checkAnswer(this, true)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">A) print()</button>
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">B) echo()</button>
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">C) write()</button>
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">D) out()</button>
+                    </div>
+                </div>
+
+                <!-- Сұрақ 2 -->
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <p class="font-semibold mb-3">2. Python-да айнымалыны қалай анықтаймыз?</p>
+                    <div class="grid gap-3">
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">A) var x = 10</button>
+                        <button onclick="checkAnswer(this, true)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">B) x = 10</button>
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">C) let x = 10</button>
+                        <button onclick="checkAnswer(this, false)" class="answer-btn bg-white border px-4 py-2 rounded hover:bg-purple-50">D) define x = 10</button>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm italic">Нәтиже автоматты түрде бағаланбайды — бірақ жауапты таңдауға болады.</p>
+            </div>
+        </div>
+
+
+        <!-- 4-бөлім: Қорытынды -->
+        <div class="border border-gray-200 rounded-lg">
+            <button onclick="toggleSection('summary')" class="w-full flex justify-between items-center p-4 text-left text-gray-800 font-medium hover:bg-gray-50">
+                <span>4-бөлім: Қорытынды</span>
+                <i class="fas fa-chevron-down" id="icon-summary"></i>
+            </button>
+            <div id="section-summary" class="px-4 pb-4 hidden text-sm sm:text-base text-gray-700 space-y-5">
+    
+                <div class="bg-white p-5 rounded-lg shadow space-y-4">
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-700">🎉 Құттықтаймыз!</h3>
+                    <p>Сіз Python бағдарламалау курсының негізгі 4 бөлімін толық өттіңіз:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>✔ Кіріспе және негіздер</li>
+                        <li>✔ Практикалық жаттығулар</li>
+                        <li>✔ Тест арқылы білім тексеру</li>
+                        <li>✔ Қорытынды бағалау</li>
+                    </ul>
+                    <p class="text-gray-600 italic">Болашақта күрделірек тақырыптарды да меңгере аласыз: функциялар, модульдер, веб фреймворктер (Flask, Django) және мәліметтер ғылымы.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                        <a href="index.html" class="bg-purple-600 hover:bg-purple-700 text-white text-center px-5 py-2 rounded-lg font-medium">Басты бетке оралу</a>
+                        <a href="#" class="bg-white hover:bg-gray-100 text-purple-600 border border-purple-500 text-center px-5 py-2 rounded-lg font-medium">Келесі курсқа өту</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Келесі бөлімдерді кейін қосамыз -->
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="index.html" class="text-purple-600 hover:underline text-sm sm:text-base">← Басты бетке қайту</a>
+    </div>
+</div>
+
+
+
+<script>
+    function toggleSection(id) {
+        const section = document.getElementById('section-' + id);
+        const icon = document.getElementById('icon-' + id);
+    
+        if (section.classList.contains('hidden')) {
+            section.classList.remove('hidden');
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            section.classList.add('hidden');
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+        }
+    }
+
+
+    function checkAnswer(button, isCorrect) {
+        // Барлық бауырларын бастапқы қалыпқа келтіру
+        const siblings = button.parentElement.children;
+        for (let i = 0; i < siblings.length; i++) {
+            siblings[i].classList.remove('bg-green-100', 'bg-red-100', 'border-green-400', 'border-red-400');
+        }
+
+        if (isCorrect) {
+            button.classList.add('bg-green-100', 'border-green-400');
+        } else {
+            button.classList.add('bg-red-100', 'border-red-400');
+        }
+    }
+</script>
+
+</body>
+</html>

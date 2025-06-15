@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Okytu | Бағдарламалау курстары</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="website icon" type="png" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+        
+        .course-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.5s ease;
+            stroke-linecap: round;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8b5cf6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Navigation -->
+    <nav class="bg-white py-4 px-6 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                    <i class="fas fa-code text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-800">Online Okytu</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="nav-link active-nav text-purple-600 font-medium">Басты бет</a>
+                <a href="#courses" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Курстар</a>
+                <a href="#webinars" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Вебинарлар</a>
+                <a href="#mentors" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Менторлар</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-purple-600 font-medium">Жетістіктер</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="relative">
+                    <button class="text-gray-600 hover:text-purple-600">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <button class="flex items-center space-x-2">
+                        <div class="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center">
+                            <i class="fas fa-user text-purple-600"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Бағдарламалауды онлайн үйреніңіз</h1>
+                <p class="text-xl mb-8">CodeMaster платформасында қазіргі заманғы технологияларды үйреніңіз және IT-саласындағы мансабыңызды бастаңыз</p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-white text-purple-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium shadow-sm">Курстарды қарау</button>
+                    <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-3 rounded-lg font-medium border border-white border-opacity-30">Тегін сабақты бастау</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="container mx-auto px-6 py-12">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Барлық курс саны</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">24</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-book text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-sm text-green-500 font-medium">
+                        <i class="fas fa-arrow-up mr-1"></i> 3 жаңа
+                    </span>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Белсенді студенттер</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">1,842</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-users text-green-600 text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-sm text-blue-500 font-medium">
+                        <i class="fas fa-arrow-up mr-1"></i> 12.5%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Аяқталған курс</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">1,205</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-trophy text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-sm text-yellow-500 font-medium">
+                        <i class="fas fa-arrow-up mr-1"></i> 8.3%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Орташа баға</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">4.8</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-star text-yellow-600 text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-sm text-gray-500">5 баллдық жүйе</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Popular Courses -->
+        <div id="courses" class="mb-12">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Танымал бағдарламалау курстары</h2>
+                <a href="#" class="text-purple-600 hover:text-purple-800 font-medium flex items-center">
+                    Барлығын көру <i class="fas fa-chevron-right ml-2 text-sm"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Course 1 -->
+                <a href="python.html" class="course-card bg-white rounded-xl overflow-hidden border border-gray-100 block">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Python курсы" class="w-full h-full object-cover">
+                        <div class="absolute top-3 right-3 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Жаңа
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Python бағдарламалау</h3>
+                                <p class="text-gray-600">Бастауыш деңгей</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.9</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-500 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">Асхат Бердібек</span>
+                            </div>
+                            <span class="text-sm font-bold text-purple-600">₸ 29,900</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-6 h-6">
+                                    <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+                                        <circle class="progress-ring__circle" stroke="#e2e8f0" stroke-width="2" fill="transparent" r="10" cx="12" cy="12"/>
+                                        <circle class="progress-ring__circle" stroke="#8b5cf6" stroke-width="2" fill="transparent" r="10" cx="12" cy="12" stroke-dasharray="62.8" stroke-dashoffset="31.4"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm text-gray-600">50% толық</span>
+                            </div>
+                            <button class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                Жалғастыру <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Course 2 -->
+                <a href="js.html" class="course-card bg-white rounded-xl overflow-hidden border border-gray-100 block">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" 
+                             alt="JavaScript курсы" class="w-full h-full object-cover">
+                        <div class="absolute top-3 right-3 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Танымал
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">JavaScript толық курс</h3>
+                                <p class="text-gray-600">Орта деңгей</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.8</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-500 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">Айгерім Сағындық</span>
+                            </div>
+                            <span class="text-sm font-bold text-purple-600">₸ 39,900</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-6 h-6">
+                                    <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+                                        <circle class="progress-ring__circle" stroke="#e2e8f0" stroke-width="2" fill="transparent" r="10" cx="12" cy="12"/>
+                                        <circle class="progress-ring__circle" stroke="#8b5cf6" stroke-width="2" fill="transparent" r="10" cx="12" cy="12" stroke-dasharray="62.8" stroke-dashoffset="12.56"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm text-gray-600">80% толық</span>
+                            </div>
+                            <button class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                Жалғастыру <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Course 3 -->
+                <a href="java.html" class="course-card bg-white rounded-xl overflow-hidden border border-gray-100 block">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" 
+                             alt="Java курсы" class="w-full h-full object-cover">
+                        <div class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Ұсынылады
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Java бағдарламалау</h3>
+                                <p class="text-gray-600">Кәсіби деңгей</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.7</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-500 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">Берик Қожаев</span>
+                            </div>
+                            <span class="text-sm font-bold text-purple-600">₸ 49,900</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-6 h-6">
+                                    <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+                                        <circle class="progress-ring__circle" stroke="#e2e8f0" stroke-width="2" fill="transparent" r="10" cx="12" cy="12"/>
+                                        <circle class="progress-ring__circle" stroke="#8b5cf6" stroke-width="2" fill="transparent" r="10" cx="12" cy="12" stroke-dasharray="62.8" stroke-dashoffset="47.1"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm text-gray-600">25% толық</span>
+                            </div>
+                            <button class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                Жалғастыру <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Upcoming Webinars -->
+        <div id="webinars" class="mb-12">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Жуықтағы вебинарлар</h2>
+                <a href="#" class="text-purple-600 hover:text-purple-800 font-medium flex items-center">
+                    Күнтізбеге өту <i class="fas fa-chevron-right ml-2 text-sm"></i>
+                </a>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    <!-- Webinar 1 -->
+                    <div class="p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-lg p-3">
+                                <i class="fas fa-laptop-code text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-1">React.js кеші</h3>
+                                <p class="text-gray-600 mb-2">Соңғы тенденциялар мен жаңалықтар</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>15 Қазан, 19:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex -space-x-2">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold">+12</div>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                Тіркелу
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Webinar 2 -->
+                    <div class="p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-lg p-3">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-1">SQL мастер-класс</h3>
+                                <p class="text-gray-600 mb-2">Дерекқорлармен жұмыс істеу</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>18 Қазан, 17:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex -space-x-2">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/65.jpg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/28.jpg" alt="">
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold">+8</div>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                Тіркелу
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Webinar 3 -->
+                    <div class="p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-green-100 text-green-600 rounded-lg p-3">
+                                <i class="fab fa-python text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-1">Python кеші</h3>
+                                <p class="text-gray-600 mb-2">Django және Flask фреймворктері</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>22 Қазан, 20:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex -space-x-2">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/45.jpg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/78.jpg" alt="">
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold">+15</div>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                Тіркелу
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Learning Progress -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Progress Chart -->
+            <div class="bg-white rounded-xl shadow-sm p-6 lg:col-span-2">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Оқу прогрессі</h2>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 text-sm bg-purple-100 text-purple-600 rounded-lg">Ай</button>
+                        <button class="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-lg">Тоқсан</button>
+                        <button class="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-lg">Жыл</button>
+                    </div>
+                </div>
+                
+                <div class="h-64">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Top Mentors -->
+            <div id="mentors" class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">Үздік менторлар</h2>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ментор" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h3 class="font-medium">Асхат Бердібек</h3>
+                            <p class="text-sm text-gray-600">Python, Django</p>
+                        </div>
+                        <div class="flex items-center text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 font-medium">4.9</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ментор" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h3 class="font-medium">Айгерім Сағындық</h3>
+                            <p class="text-sm text-gray-600">JavaScript, React</p>
+                        </div>
+                        <div class="flex items-center text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 font-medium">4.8</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Ментор" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h3 class="font-medium">Берик Қожаев</h3>
+                            <p class="text-sm text-gray-600">Java, Spring</p>
+                        </div>
+                        <div class="flex items-center text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 font-medium">4.7</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ментор" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h3 class="font-medium">Гүлназ Жақсылық</h3>
+                            <p class="text-sm text-gray-600">SQL, MySQL</p>
+                        </div>
+                        <div class="flex items-center text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 font-medium">4.6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                            <i class="fas fa-code text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">Online Okytu</span>
+                    </div>
+                    <p class="text-gray-400">Қазақстандағы ең үздік онлайн бағдарламалау курстары. IT-білімді қолжетімді етеміз.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Курстар</h3>
+                    <ul class="space-y-2">
+                        <li><a href="python.html" class="text-gray-400 hover:text-white">Python</a></li>
+                        <li><a href="js.html" class="text-gray-400 hover:text-white">JavaScript</a></li>
+                        <li><a href="java.html" class="text-gray-400 hover:text-white">Java</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">C#</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">SQL</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Компания</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Біз туралы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Менторлар</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Карьера</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Байланыс</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Байланыс</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-gray-400"></i>
+                            <span class="text-gray-400">Шымкент, Достық 34</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-gray-400"></i>
+                            <span class="text-gray-400">+7 747 532 6951</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                            <span class="text-gray-400">info@codemaster.kz</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Online Okytu. Барлық құқықтар қорғалған.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Progress Chart
+        const progressCtx = document.getElementById('progressChart').getContext('2d');
+        const progressChart = new Chart(progressCtx, {
+            type: 'line',
+            data: {
+                labels: ['Қаң', 'Ақп', 'Нау', 'Сәу', 'Мам', 'Мау', 'Шіл', 'Там', 'Қыр', 'Қаз', 'Қар', 'Жел'],
+                datasets: [
+                    {
+                        label: 'Сабақтар',
+                        data: [12, 19, 15, 27, 22, 30, 25, 35, 40, 45, 50, 60],
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.05)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Вебинарлар',
+                        data: [8, 10, 12, 15, 18, 20, 22, 25, 28, 30, 35, 40],
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.05)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + ' сағат';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + ' сағ';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Course cards hover effect
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+        
+        // Nav link hover effect
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if(!link.classList.contains('active-nav')) {
+                    link.style.color = '#8b5cf6';
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                if(!link.classList.contains('active-nav')) {
+                    link.style.color = '#4b5563';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
